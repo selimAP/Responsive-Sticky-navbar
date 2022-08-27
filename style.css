@@ -1,0 +1,138 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+
+}
+
+.header{
+    background: #00001d;
+}
+
+.header li{
+    list-style: none;
+}
+
+.header a{
+    color: white;
+    text-decoration: none;
+}
+
+.navbar{
+    min-height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 24px;
+}
+.navmenu{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+}
+
+.navlogo{
+    font-size: 2rem;
+}
+
+.navlink{
+
+    position: relative;
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    letter-spacing: 0.2px;
+    padding: 0 8px;
+}
+.navlink::before{
+    transition: 0.5s ease;
+    content: "";
+    position: absolute;
+    background: turquoise;
+    height: 3px;
+    width: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 7px;
+}
+.navlink:hover::before{
+    width: 100%;
+    left: 0;
+    right: 0;
+    opacity: 1;
+}
+
+
+.lines{
+    display: none;
+    cursor: pointer;
+}
+.bar{
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: write;
+    background: white;
+}
+
+@media(max-width: 850px) {
+    .lines{
+        display: block;
+    }
+
+    .lines.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .lines.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .lines.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    .navlink{
+        font-size: 30px;
+        padding: 0 8px;
+
+    }
+    .navlink::before{
+        bottom: 12px;
+        height: 4px;
+
+    }
+
+    .navmenu{
+        position: fixed;
+        left: 100%;
+        top: 69px;
+        gap: 0;
+        flex-direction: column;
+        background-color: #00001d;
+        width: 80%;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s;
+        height: 95vh;
+    }
+
+    .navitem{
+        margin: 80px;
+        font-size: 30px;
+    }  
+
+    .navmenu.active{
+        left: 20%;
+    }
+}
+
+@media(max-height: 770px) {
+    .navitem{
+        margin: 60px;
+        font-size: 25px;
+    } 
+}
