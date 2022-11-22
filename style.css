@@ -2,6 +2,7 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    background: rgb(0, 0, 0);
 
 }
 
@@ -20,7 +21,7 @@
 }
 
 .header a{
-    color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
     text-decoration: none;
 }
 
@@ -56,12 +57,12 @@
     transition: 0.5s ease;
     content: "";
     position: absolute;
-    background: turquoise;
-    height: 3px;
+    background: rgb(255, 255, 255);
+    height: 1px;
     width: 0;
     left: 50%;
     right: 50%;
-    bottom: 7px;
+    bottom: -2px;
 }
 .navlink:hover::before{
     width: 100%;
@@ -89,6 +90,7 @@
 @media(max-width: 850px) {
     .lines{
         display: block;
+
     }
 
     .lines.active .bar:nth-child(2) {
@@ -108,8 +110,8 @@
 
     }
     .navlink::before{
-        bottom: 12px;
-        height: 4px;
+        bottom: -2px;
+        height: 1px;
 
     }
 
@@ -119,7 +121,7 @@
         top: 0;
         gap: 0;
         flex-direction: column;
-        background-color: #00001d;
+        background-color: #000000;
         width: 100%;
         justify-content: center;
         align-items: center;
@@ -148,4 +150,101 @@
 .page{
     height: 100vh;
     width: 100%;
+    opacity: 1;
+}
+
+
+.lines{
+    display: none;
+    cursor: pointer;
+}
+.bar{
+    border-radius: 5px;
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: write;
+    background: white;
+}
+.small{
+    width: 20px;
+    margin: 0;
+
+}
+
+@media(max-width: 850px) {
+    .lines{
+        display: block;
+    }
+
+    .lines.active{
+        animation: spin 0.3s ease-in-out;
+    }
+
+    .lines.active .bar:nth-child(2) {
+        opacity: 0;
+
+    }
+
+    .lines.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .lines.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+
+    }
+    .navlink{
+        font-size: 30px;
+        padding: 0 8px;
+
+    }
+    .navlink::before{
+        bottom: -2px;
+        height: 1px;
+
+    }
+
+    .navmenu{
+        position: fixed;
+        left: 100%;
+        top: 0;
+        gap: 0;
+        flex-direction: column;
+        background-color: #000000;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s;
+        height: 100vh;
+    }
+
+    .navitem{
+        margin: 80px;
+        font-size: 30px;
+    }  
+
+    .navmenu.active{
+        left: 0%;
+        width: 100%;
+    }
+}
+
+@media(max-height: 770px) {
+    .navitem{
+        margin: 60px;
+        font-size: 25px;
+    } 
+}
+
+@keyframes spin {
+    0%{
+        transform: rotate(0);
+    }
+    100%{
+        transform: rotate(180deg);
+    }
 }
