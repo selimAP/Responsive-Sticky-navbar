@@ -2,24 +2,30 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    background: rgb(0, 0, 0);
-
+}
+body{
+    background: rgb(18, 22, 32);
+    scroll-behavior: smooth;
+}
+.menu-open body {
+    overflow: hidden;
 }
 
 .header{
+    z-index: 8;
     position: fixed;
     width: 100%;
     transition: all 0.3s ease;
-    background: #c5c5c5;
+    font-family: 'Chivo Mono', monospace;
+    font-weight: 200;
 }
 .header.sticky{
-    background: none;
-    }
-
+    background: rgb(18, 22, 32);
+    box-shadow: 0px 0px 10px rgb(0, 0, 0);
+}
 .header li{
     list-style: none;
 }
-
 .header a{
     color: rgb(255, 255, 255);
     text-decoration: none;
@@ -30,22 +36,22 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 24px;
+    padding: 0 45px;
 }
+
 .navmenu{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    gap: 60px;
+    gap: 20px;
 }
 
 .navlogo{
-    font-size: 2rem;
-    z-index: 2;
+    font-size: 40px;
+    z-index: 10;
 }
 
 .navlink{
-
     position: relative;
     text-decoration: none;
     color: rgb(255, 255, 255);
@@ -54,7 +60,7 @@
     padding: 0 8px;
 }
 .navlink::before{
-    transition: 0.5s ease;
+    transition: 0.3s ease;
     content: "";
     position: absolute;
     background: rgb(255, 255, 255);
@@ -63,20 +69,96 @@
     left: 50%;
     right: 50%;
     bottom: -2px;
+    background: rgb(0, 255, 229);
 }
 .navlink:hover::before{
     width: 100%;
+    background: rgb(0, 255, 229);
     left: 0;
     right: 0;
     opacity: 1;
+
 }
 
+.lines{
+    z-index: 10;
+    display: none;
+    cursor: pointer;
+}
+
+.bar{
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    background-color: write;
+    background: white;
+    font-family: 'Chivo Mono', monospace;
+}
+
+@media(max-width: 850px) {
+
+    .menu-open .lines .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .menu-open .lines .bar:nth-child(2) {
+        transform: translateY(-8px) rotate(-45deg);
+        margin-top: 13px;
+    }
+
+    .navlink{
+        font-size: 30px;
+        padding: 0 8px;
+    }
+    .navlink::before{
+        bottom: -2px;
+        height: 1px;
+    }
+
+    .navmenu{
+        position: fixed;
+        height: 100vh;
+        left: 100%;
+        top: 0;
+        gap: 0;
+        flex-direction: column;
+        background: rgb(18, 22, 32);
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+        transition: 0.3s;
+    }
+
+    .navitem{
+        margin: 80px;
+        font-size: 30px;
+    }
+
+    .menu-open .navmenu{
+        left: 0%;
+        width: 100%;
+        margin: 0;
+        height: 100%;
+        overflow: hidden;
+    }
+}
+
+@media(max-height: 770px) {
+    .navitem{
+        margin: 60px;
+        font-size: 25px;
+    } 
+}
 
 .lines{
     display: none;
     cursor: pointer;
 }
+
 .bar{
+    border-radius: 5px;
     display: block;
     width: 25px;
     height: 3px;
@@ -90,19 +172,15 @@
 @media(max-width: 850px) {
     .lines{
         display: block;
-
     }
 
-    .lines.active .bar:nth-child(2) {
-        opacity: 0;
-    }
-
-    .lines.active .bar:nth-child(1) {
+    .menu-open .lines .bar:nth-child(1) {
         transform: translateY(8px) rotate(45deg);
     }
 
-    .lines.active .bar:nth-child(3) {
+    .menu-open .lines .bar:nth-child(2) {
         transform: translateY(-8px) rotate(-45deg);
+
     }
     .navlink{
         font-size: 30px;
@@ -115,26 +193,27 @@
 
     }
 
-    .navmenu{
+    .menu-open .navmenu{
         position: fixed;
         left: 100%;
         top: 0;
         gap: 0;
         flex-direction: column;
-        background-color: #000000;
+        background: rgb(18, 22, 32);
         width: 100%;
         justify-content: center;
         align-items: center;
-        transition: 0.3s;
+        transition: 0.5s ease;
         height: 100vh;
+        margin: 0;
     }
 
     .navitem{
         margin: 80px;
         font-size: 30px;
-    }  
+    }
 
-    .navmenu.active{
+    .menu-open .navmenu{
         left: 0%;
         width: 100%;
     }
@@ -150,101 +229,4 @@
 .page{
     height: 100vh;
     width: 100%;
-    opacity: 1;
-}
-
-
-.lines{
-    display: none;
-    cursor: pointer;
-}
-.bar{
-    border-radius: 5px;
-    display: block;
-    width: 25px;
-    height: 3px;
-    margin: 5px auto;
-    -webkit-transition: all 0.3s ease-in-out;
-    transition: all 0.3s ease-in-out;
-    background-color: write;
-    background: white;
-}
-.small{
-    width: 20px;
-    margin: 0;
-
-}
-
-@media(max-width: 850px) {
-    .lines{
-        display: block;
-    }
-
-    .lines.active{
-        animation: spin 0.3s ease-in-out;
-    }
-
-    .lines.active .bar:nth-child(2) {
-        opacity: 0;
-
-    }
-
-    .lines.active .bar:nth-child(1) {
-        transform: translateY(8px) rotate(45deg);
-    }
-
-    .lines.active .bar:nth-child(3) {
-        transform: translateY(-8px) rotate(-45deg);
-
-    }
-    .navlink{
-        font-size: 30px;
-        padding: 0 8px;
-
-    }
-    .navlink::before{
-        bottom: -2px;
-        height: 1px;
-
-    }
-
-    .navmenu{
-        position: fixed;
-        left: 100%;
-        top: 0;
-        gap: 0;
-        flex-direction: column;
-        background-color: #000000;
-        width: 100%;
-        justify-content: center;
-        align-items: center;
-        transition: 0.3s;
-        height: 100vh;
-    }
-
-    .navitem{
-        margin: 80px;
-        font-size: 30px;
-    }  
-
-    .navmenu.active{
-        left: 0%;
-        width: 100%;
-    }
-}
-
-@media(max-height: 770px) {
-    .navitem{
-        margin: 60px;
-        font-size: 25px;
-    } 
-}
-
-@keyframes spin {
-    0%{
-        transform: rotate(0);
-    }
-    100%{
-        transform: rotate(180deg);
-    }
 }
